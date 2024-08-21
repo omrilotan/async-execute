@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["esnext"],
+    "module": "esnext",
+    "types": ["@types/node"],
+    "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "noEmit": true,
+    "sourceMap": true
+  },
+  "include": ["**/*"],
+  "exclude": ["node_modules", "dist"]
+}

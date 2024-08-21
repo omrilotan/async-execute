@@ -1,0 +1,43 @@
+{
+  "name": "async-execute",
+  "version": "2.0.0",
+  "description": "🦅 Execute command in a child process",
+  "keywords": [
+    "async",
+    "execute",
+    "exec",
+    "child_process",
+    "shell",
+    "promise",
+    "spawn",
+    "command",
+    "cmd"
+  ],
+  "author": "omrilotan",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omrilotan/async-execute.git"
+  },
+  "homepage": "https://omrilotan.com/async-execute/",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean",
+    "build": "tsup index.ts --format esm --dts --sourcemap",
+    "format": "prettier --write .",
+    "test": "node --test --experimental-test-coverage --experimental-strip-types test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.4.1",
+    "prettier": "^3.3.3",
+    "tsup": "^8.2.4",
+    "typescript": "^5.5.4"
+  }
+}
