@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next (TBD)
+## 2.0.1
 
 - Remove unused files from npm package
 

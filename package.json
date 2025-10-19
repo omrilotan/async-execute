@@ -1,6 +1,6 @@
 {
   "name": "async-execute",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "🦅 Execute command in a child process",
   "keywords": [
     "async",
@@ -28,8 +28,7 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "clean": "rm -rf dist",
-    "prebuild": "npm run clean",
+    "prebuild": "rm -rf dist",
     "build": "tsup index.ts --format esm --dts --sourcemap",
     "format": "prettier --write .",
     "test": "node --test --experimental-test-coverage --experimental-strip-types test.ts"

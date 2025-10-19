@@ -1,4 +1,4 @@
-import { describe, it, afterEach } from "node:test";
+import { describe, test, afterEach } from "node:test";
 import assert from "node:assert/strict";
 import { execute } from "./index.ts";
 
@@ -10,19 +10,19 @@ describe("async-execute", () => {
 		process.stderr.write = stderr;
 	});
 
-	it("Should return console output", async () =>
+	test("return console output", async () =>
 		assert.equal(await execute('echo "Hello"'), "Hello"));
 
-	it("Should return multi line answers", async () =>
+	test("return multi line answers", async () =>
 		assert.equal(await execute('echo "Hello\nthere"'), "Hello\nthere"));
 
-	it("Should trim line breaks and white space from the edges", async () =>
+	test("trim line breaks and white space from the edges", async () =>
 		assert.equal(await execute('echo "\n\n    Hello		\n\n     	 "'), "Hello"));
 
-	it("Should always return a string", async () =>
+	test("always return a string", async () =>
 		assert.equal(typeof (await execute('echo "hello" > /dev/null')), "string"));
 
-	it("Should pass the exit code on error", async () => {
+	test("pass the exit code on error", async () => {
 		let code = 0;
 
 		try {
@@ -34,7 +34,7 @@ describe("async-execute", () => {
 		assert.equal(code, 14);
 	});
 
-	it("Should pipe output", async () => {
+	test("pipe output", async () => {
 		let called = 0;
 		Object.defineProperty(process.stdout, "write", {
 			value: function (...args) {
@@ -50,7 +50,7 @@ describe("async-execute", () => {
 		assert.equal(result, "one\nend\ntwo\nfin");
 	});
 
-	it("Should pipe stderr", async () => {
+	test("pipe stderr", async () => {
 		let called = 0;
 		let outputs = [];
 		Object.defineProperty(process.stderr, "write", {
@@ -70,7 +70,7 @@ describe("async-execute", () => {
 		assert.equal(result, "end");
 	});
 
-	it("Should throw an error", async () => {
+	test("throw an error", async () => {
 		let threw = false;
 		let err;
 		const cmd = 'echo "message content" >&2 ; exit 125';
@@ -88,7 +88,7 @@ describe("async-execute", () => {
 		assert(threw, "Should have thrown an error");
 	});
 
-	it("Should pass on parameters to exec: env", async () => {
+	test("pass on parameters to exec: env", async () => {
 		assert.equal(
 			await execute("echo $SOME_KEY", {
 				env: { SOME_KEY: "Balue" },
@@ -96,7 +96,7 @@ describe("async-execute", () => {
 			"Balue",
 		);
 	});
-	it("Should pass on parameters to exec: cwd", async () => {
+	test("pass on parameters to exec: cwd", async () => {
 		assert.notEqual(process.cwd(), "/"); // test the test
 		assert.equal(await execute("pwd"), process.cwd());
 		assert.equal(await execute("pwd", { cwd: "/" }), "/");

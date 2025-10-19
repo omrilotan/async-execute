@@ -15,7 +15,7 @@ export function execute(
 	return new Promise((resolve, reject) => {
 		const child = exec(
 			script,
-			rest as ExecOptions as any,
+			rest as ExecOptions,
 			(error, stdout = new Buffer("")) => {
 				if (error) {
 					error.code = child.exitCode;
